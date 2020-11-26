@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Blog;
+use App\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -14,7 +14,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blog = Blog::paginate(5);
+        return view('blog.index', compact('blog'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required|string|max:50|unique:blogs'
+        ]);
+        $request->request->add(['slug' => $request->title]);
+        Blog::create($request->except('_token'));
+
+        return redirect(route('blog.index'))->with(['success' => 'Blog berhasil Ditambah']);
     }
 
     /**
@@ -46,7 +53,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +64,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('blog.edit', compact('blog'));
     }
 
     /**
@@ -69,7 +76,15 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required|string|max:50|unique:blogs'
+        ]);
+        $blog->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'slug' => $request->name
+        ]);
+        return redirect(route('blog.index'))->with(['success' => 'Update Succesfully']);
     }
 
     /**
