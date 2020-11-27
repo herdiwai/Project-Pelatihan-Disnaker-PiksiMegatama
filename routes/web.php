@@ -30,8 +30,8 @@ Route::get('/logout','Auth\LoginController@logout')->name('logout');
 //Category Route
 Route::get('/category', 'CategoryController@index')->name('category');
 
-Route::get('/category/store', 'CategoryController@create')->name('category.create');
-Route::post('/category/create', 'CategoryController@store')->name('category.store');
+Route::get('/category/create', 'CategoryController@create')->name('category.create');
+Route::post('/category/store', 'CategoryController@store')->name('category.store');
 
 Route::get('/category/edit/{category}', 'CategoryController@edit')->name('category.edit');
 Route::PUT('/category/category/{category}', 'CategoryController@Update')->name('category.update');

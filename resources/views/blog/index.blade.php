@@ -39,20 +39,20 @@
                       @if ($item['image'])
                         <img src="{{ asset('storage/' .$item['image']) }}" width="70px" alt=""></td>
                       @else
-                        Belum ada Image    
+                        No Image    
                       @endif
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->description }}</td>
                     <td>{{ $item['created_at'] }}</td>
                     <td>
                     <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-icon btn-info"><i class="far fa-edit"></i></a>
-                    {{-- <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
+                    <a href="#" data-id="{{ $item->id }}" class="btn btn-icon btn-danger swal-confirm">
                       <form action="{{ route('blog.destroy',$item->id) }}" id="delete{{ $item->id }}" method="POST">
                         @csrf
-                        @method('delete')
+                        @method('DELETE')
                       </form>
                       <i class="fas fa-times"></i>
-                    </a> --}}
+                    </a>
                     </td>
                 </tr>
               @endforeach
