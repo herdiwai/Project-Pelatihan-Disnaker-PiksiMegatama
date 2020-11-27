@@ -19,7 +19,7 @@
               </div>
             @endif
 
-          <table class="table table-hover" style="border: 1px solid lightgrey">
+          <table id="table_blog" class="table table-hover" style="border: 1px solid lightgrey">
             <thead>
               <tr>
                 <th scope="col">No</th>
@@ -32,9 +32,9 @@
             </thead>
             <tbody>
 
-              @foreach($blog as $no => $item)
+              @foreach($blog as $item)
                 <tr>
-                    <th scope="row">{{ $blog->firstItem()+$no }}</th>
+                  <th scope="row">{{ $loop->iteration }}</th>
                     <td>
                       @if ($item['image'])
                         <img src="{{ asset('storage/' .$item['image']) }}" width="70px" alt=""></td>
@@ -58,7 +58,7 @@
               @endforeach
             </tbody>
           </table>
-          {{ $blog->links() }}
+          {{-- {{ $blog->links() }} --}}
         </div>
       </div>
 
@@ -73,6 +73,11 @@
 @push('after-script')
 
 <script>
+
+  $(document).ready(function() {
+      $('#table_blog').DataTable();
+  });
+
   $(".swal-confirm").click(function(e) {
     id = e.target.dataset.id;
     swal({

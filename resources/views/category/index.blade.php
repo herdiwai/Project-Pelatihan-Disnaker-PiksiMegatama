@@ -2,6 +2,7 @@
 @section('title', 'Category')
 @section('content')
 
+
 <div class="row">
     <div class="col-md">
       <div class="card">
@@ -19,21 +20,21 @@
               </div>
             @endif
 
-          <table class="table table-hover" style="border: 1px solid lightgrey">
+          <table id="table_category" class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col">No</th>
                 <th scope="col">Category</th>
-                <th scope="col">Parent_id</th>
+                <th scope="col">Slug</th>
                 <th scope="col">Create At</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
 
-              @foreach($category as $no => $item)
+              @foreach($category as $item)
                 <tr>
-                    <th scope="row">{{ $category->firstItem()+$no }}</th>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $item['name'] }}</td>
                     <td>{{ $item->parent ? $item->parent->name:'-' }}</td>
                     <td>{{ $item['created_at'] }}</td>
@@ -51,7 +52,7 @@
               @endforeach
             </tbody>
           </table>
-          {{ $category->links() }}
+          {{-- {{ $category->links() }} --}}
         </div>
       </div>
 
@@ -66,6 +67,12 @@
 @push('after-script')
 
 <script>
+// DataTable
+$(document).ready(function() {
+    $('#table_category').DataTable();
+});
+
+
   $(".swal-confirm").click(function(e) {
     id = e.target.dataset.id;
     swal({

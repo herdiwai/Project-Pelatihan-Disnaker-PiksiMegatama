@@ -8,9 +8,9 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         
-        $category = Category::with('parent')->orderBy('created_at','DESC')->paginate(5);
+        $category = Category::with('parent')->orderBy('created_at','DESC')->get();
         $parent = Category::getParent()->orderBy('name','ASC')->get();
         
         return view('category.index', compact('category','parent'));
@@ -56,7 +56,10 @@ class CategoryController extends Controller
     }
 
     public function delete($id) {
-        $category = Category::find($id)->delete();
+        $user = Category::findOrfail($id);
+        $user->delete();
+
+        // $category = Category::find($id)->delete();
         return redirect(route('category'));
     }
 }
