@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
@@ -34,13 +35,20 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $this->validate($request,[
             'title'=>'required|string|max:50|unique:blogs'
         ]);
-        $request->request->add(['slug' => $request->title]);
-        Blog::create($request->except('_token'));
+        
+        $request->request->add([
+            'slug' => $request->title,
+        ]);
+
+        Blog::create(
+            $request->except('_token')
+        );
 
         return redirect(route('blog.index'))->with(['success' => 'Blog berhasil Ditambah']);
     }

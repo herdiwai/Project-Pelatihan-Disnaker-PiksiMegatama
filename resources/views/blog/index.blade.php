@@ -35,7 +35,12 @@
               @foreach($blog as $no => $item)
                 <tr>
                     <th scope="row">{{ $blog->firstItem()+$no }}</th>
-                    <td>{{ $item->image }}</td>
+                    <td>
+                      @if ($item['image'])
+                        <img src="{{ asset('storage/' .$item['image']) }}" width="70px" alt=""></td>
+                      @else
+                        Belum ada Image    
+                      @endif
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->description }}</td>
                     <td>{{ $item['created_at'] }}</td>
