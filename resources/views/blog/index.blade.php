@@ -74,9 +74,8 @@
 
 <script>
 
-  $(document).ready(function() {
-      $('#table_blog').DataTable();
-  });
+$(document).ready(function() {
+  $('#table_blog').DataTable();
 
   $(".swal-confirm").click(function(e) {
     id = e.target.dataset.id;
@@ -98,6 +97,9 @@
       }
     });
   });
+});
+
+  
 </script>
 
 @endpush

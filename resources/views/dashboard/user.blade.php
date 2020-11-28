@@ -9,7 +9,7 @@
           <a href="{{ route('create') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Create User</a>
         </div>
         <div class="card-body">
-          <table class="table table-hover">
+          <table id="table_user" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">No</th>
@@ -47,3 +47,16 @@
       </div>
   
 @endsection
+
+
+@push('after-script')
+
+<script>
+
+  $(document).ready(function() {
+      $('#table_user').DataTable();
+  });
+
+</script>
+
+@endpush

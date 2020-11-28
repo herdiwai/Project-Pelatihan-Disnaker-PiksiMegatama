@@ -41,14 +41,25 @@ class BlogController extends Controller
         $this->validate($request,[
             'title'=>'required|string|max:50|unique:blogs'
         ]);
-        
+
+        if ($request->file('image')){
+            $image = $request->file('image')->store('image' , 'public');
+        } else {
+            $image = null;
+        }
+
         $request->request->add([
             'slug' => $request->title,
         ]);
 
-        Blog::create(
-            $request->except('_token')
-        );
+        Blog::insert([
+            // $request->except('_token'),
+            'image' => $image,
+            'title' => $request ->get('title'),
+            'description' => $request ->get('description'),
+            'slug' => $request ->get('slug')
+            
+        ]);
 
         return redirect(route('blog.index'))->with(['success' => 'Blog berhasil Ditambah']);
     }
