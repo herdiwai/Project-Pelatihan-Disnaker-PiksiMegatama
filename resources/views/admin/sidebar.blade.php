@@ -8,7 +8,7 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Dashboard</li>
-            <li class="{{ Request::is('dashboard')? 'active':'' }}"><a href="{{ url('/dashboard') }}"> <i class="fas fa-fire"></i><span>Dashboard</span></a></li>
+            <li class="{{ Request::is('dashboard') ? 'active':'' }}"><a href="{{ url('/dashboard') }}"> <i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
             {{-- <ul class="dropdown-menu">
               <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
               <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
@@ -22,9 +22,9 @@
               <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
             </ul>
           </li> --}}
-          <li class="{{ Request::is('user')? 'active':'' }}"><a href="{{ url('/user') }}"><i class="fas fa-fire"></i> <span>Form Users</span></a></li>
-          <li class="{{ Request::is('category')? 'active':'' }}"><a  href="{{ url('/category') }}" class="nav-link"><i class="fas fa-fire"></i> <span>Category</span></a></li>
-          <li class="{{ Request::is('blog')? 'active':'' }}"><a  href="{{ url('/blog') }}" class="nav-link"><i class="fas fa-fire"></i> <span>Blog</span></a></li>
+          <li class="{{ Request::is('user')? 'active':'' }}"><a href="{{ url('/user') }}"><i class="fas fa-users"></i> <span>Form Users</span></a></li>
+          <li class="{{ Request::is('category')? 'active':'' }}"><a  href="{{ url('/category') }}" class="nav-link"><i class="fas fa-book-open"></i> <span>Category</span></a></li>
+          <li class="{{ Request::is('blog')? 'active':'' }}"><a  href="{{ url('/blog') }}" class="nav-link"><i class="fas fa-book-open"></i> <span>Blog</span></a></li>
           {{-- <li><a class="nav-link" href="{{ url('/category/create') }}"><i class="fas fa-fire"></i> <span>Create Category</span></a></li> --}}
           {{-- <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>

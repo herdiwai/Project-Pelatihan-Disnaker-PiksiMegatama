@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title', 'Blog')
+@section('title', 'Trash')
 @section('content')
 
 <div class="row">
