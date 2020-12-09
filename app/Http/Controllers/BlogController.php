@@ -118,4 +118,37 @@ class BlogController extends Controller
         $blog->delete();
         return redirect(route('blog.index'));
     }
+
+    public function trash() {
+
+        $blog = Blog::onlyTrashed()->get();
+        return view('blog.trash', compact('blog'));
+    }
+
+    public function restore($id = null) {
+
+        if($id != null) {
+            Blog::onlyTrashed()
+            ->where('id', $id)
+            ->restore();
+            return redirect('blog/trash')->with('status', 'Blog berhasil di-restore!');
+        } else {
+           Blog::onlyTrashed()->restore();
+        }
+        return redirect('blog/trash')->with('status', 'Blog berhasil di-semua!');
+    }
+
+    public function delete($id = null) {
+
+        if($id != null) {
+            Blog::onlyTrashed()
+            ->where('id', $id)
+            ->forceDelete();
+            return redirect('blog/trash')->with('status', 'Blog berhasil dihapus!');
+        } else {
+           Blog::onlyTrashed()->forceDelete();
+        }
+        return redirect('blog/trash')->with('status', 'Blog berhasil dihapus semua!');
+    }
+
 }

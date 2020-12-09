@@ -6,7 +6,8 @@
     <div class="col-md">
       <div class="card">
         <div class="card-body pb-2">
-          <a href="{{ route('blog.create') }}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Create-Blog</a>
+          <a href="{{ route('blog.create') }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-pen"></i> Create-Blog</a>
+          <a href="{{ url('blog/trash') }}" class="btn btn-icon icon-left btn-danger float-right"><i class="fas fa-trash"> Trash</i></a>
         </div>
         <div class="card-body">
             {{-- Alert --}}
@@ -51,7 +52,7 @@
                         @csrf
                         @method('DELETE')
                       </form>
-                      <i class="fas fa-times"></i>
+                      <i class="fas fa-trash"></i>
                     </a>
                     </td>
                 </tr>

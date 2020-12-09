@@ -39,4 +39,7 @@ Route::PUT('/category/category/{category}', 'CategoryController@Update')->name('
 Route::delete('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
 
 // POST 
+Route::get('blog/trash','BlogController@trash');
+Route::get('blog/restore/{id?}','BlogController@restore');
+Route::delete('blog/delete/{id?}','BlogController@delete');
 Route::resource('blog', 'BlogController');
